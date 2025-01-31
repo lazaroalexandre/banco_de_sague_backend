@@ -18,12 +18,13 @@ Por fim, nesse repositório foi desenvolvido o backend do projeto.
 - MySql - SQL
 
 ## Configurações em localhost
-
-    1 - Instale o Maven na sua máquina;
-    2 - Instale o MySQL na sua máquina;
-    3 - Crie um usuário chamado root no MySQL, se não houver;
-    4 - Altere a senha de usuário para vazia também, se não estiver vazio;
-    5 - Crie um banco de dados chamado "banco_de_sangue";
+    
+  - instale o JDK21; 
+  - Instale o Maven na sua máquina;
+  - Instale o MySQL na sua máquina;
+  - Crie um usuário chamado root no MySQL, se não houver;
+  - Altere a senha de usuário para vazia também, se não estiver vazio;
+  - Crie um banco de dados chamado "banco_de_sangue";
 
 ## Dependências implantadas
 
@@ -35,34 +36,26 @@ Por fim, nesse repositório foi desenvolvido o backend do projeto.
 
 ## Inicialização
 
-- ### Instalação
-
-        Antes de tudo, instale o JDK21 e o Maven na sua máquina. Veja algum tutorial atualizado na internet.
-
-- ### No Linux
+### No Linux
         
-        Execute o comando para limpar e reconstruir o projeto spring no linux:
-
-        - mvn clean package
+  - Execute o comando para limpar e reconstruir o projeto spring no linux:
+    - mvn clean package
     
-        Execute o comando para rodar o projeto no linux:
+  - Execute o comando para rodar o projeto no linux:
+    - mvn spring-boot:run
 
-        - mvn spring-boot:run
 
+### No Windows
 
-- ### No Windows
-
-        Execute o comando para limpar e reconstruir o projeto spring no windows:
+  - Execute o comando para limpar e reconstruir o projeto spring no windows:
+    -  ./mvnw clean package
         
-        - ./mvnw clean package
-        
-        Execute o comando para rodar o projeto no windows:
-
-        - ./mvnw spring-boot:run
+  - Execute o comando para rodar o projeto no windows:
+    - ./mvnw spring-boot:run
 
 ## Endpoints
 
-    [endpoints.json](/endpoints.json)
+    [endpoints.json](./endpoints.json)
     
 ## Autor
 
