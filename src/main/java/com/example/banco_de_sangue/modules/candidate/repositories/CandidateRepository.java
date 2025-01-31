@@ -22,7 +22,9 @@ public interface CandidateRepository extends JpaRepository<CandidateModel, Strin
                         +
                         "  ROUND(AVG(c.peso / (c.altura * c.altura)), 2) AS averageImc " +
                         "FROM CandidateModel c " +
-                        "GROUP BY ageRange")
+                        "GROUP BY CONCAT( FLOOR((YEAR(CURRENT_DATE) - YEAR(c.data_nasc)) / 10) * 10, '-' , FLOOR((YEAR(CURRENT_DATE) - YEAR(c.data_nasc)) / 10) * 10 + 9) "
+                        +
+                        "ORDER BY ageRange")
         List<Object[]> averageImcByAgeRange();
 
         @Query("SELECT " +
