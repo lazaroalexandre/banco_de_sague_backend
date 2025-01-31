@@ -17,7 +17,7 @@ Por fim, nesse repositório foi desenvolvido o backend do projeto.
 - Spring - Java
 - MySql - SQL
 
-# Configurações em localhost
+## Configurações em localhost
 
     1 - Instale o Maven na sua máquina;
     2 - Instale o Postgres SQL na sua máquina;
