@@ -1,6 +1,6 @@
 # Banco de Sangue - Backend
 
-O sistema é uma ferramenta móvel de manipulação de dados de sangue de uma agência, com o fito de:
+O projeto tem como objetivo facilitar a gestão de dados de candidatos para doação de sangue por meio de um sistema móvel digital, com as seguintes funcionalidades:
 
 - Fazer upload de arquivos jsons com dados dos candidatos para doação de sangue;
 - Listar os possíveis doadores de sangue;
