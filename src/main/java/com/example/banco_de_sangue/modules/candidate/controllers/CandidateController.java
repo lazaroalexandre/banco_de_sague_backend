@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.example.banco_de_sangue.modules.candidate.enums.SexEnum;
-import com.example.banco_de_sangue.modules.candidate.enums.StateEnum;
 import com.example.banco_de_sangue.modules.candidate.models.CandidateModel;
 import com.example.banco_de_sangue.modules.candidate.services.CandidateService;
 
@@ -35,27 +33,27 @@ public class CandidateController {
     }
 
     @GetMapping("/by-states")
-    public Map<StateEnum, Long> countCandidatesByState() {
+    public List<Map<String, Object>> countCandidatesByState() {
         return candidateService.countCandidatesByState();
     }
 
     @GetMapping("/imc-by-age")
-    public Map<String, Double> averageImcByAgeRange() {
+    public List<Map<String, Object>>averageImcByAgeRange() {
         return candidateService.averageImcByAgeRange();
     }
 
     @GetMapping("/sex-obsessed")
-    public Map<SexEnum, Double> countObeseBySex() {
+    public List<Map<String, Object>> countObeseBySex() {
         return candidateService.countObeseBySex();
     }
 
     @GetMapping("/average-age-blood")
-    public Map<String, Double> averageAgeByBloodType() {
+    public List<Map<String, Object>> averageAgeByBloodType() {
         return candidateService.averageAgeByBloodType();
     }
 
     @GetMapping("/possible-donors")
-    public Map<String, Long>  countPossibleDonors() {
+    public List<Map<String, Object>>  countPossibleDonors() {
         return candidateService.countPossibleDonors();
     }
 }

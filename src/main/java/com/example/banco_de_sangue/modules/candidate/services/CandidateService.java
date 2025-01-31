@@ -1,5 +1,6 @@
 package com.example.banco_de_sangue.modules.candidate.services;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,61 +31,76 @@ public class CandidateService {
     }
 
     @Transactional
-    public Map<StateEnum, Long> countCandidatesByState() {
+    public List<Map<String, Object>> countCandidatesByState() {
         List<Object[]> result = candidateRepository.countCandidatesByState();
-        Map<StateEnum, Long> stateCountMap = new HashMap<>();
+        List<Map<String, Object>> stateCountList = new ArrayList<>();
         for (Object[] row : result) {
             StateEnum state = (StateEnum) row[0];
             Long count = (Long) row[1];
-            stateCountMap.put(state, count);
+            Map<String, Object> map = new HashMap<>();
+            map.put("estado", state);
+            map.put("quantidade", count);
+            stateCountList.add(map);
         }
-        return stateCountMap;
+        return stateCountList;
     }
 
     @Transactional
-    public Map<String, Double> averageImcByAgeRange() {
+    public List<Map<String, Object>> averageImcByAgeRange() {
         List<Object[]> result = candidateRepository.averageImcByAgeRange();
-        Map<String, Double> imcAgeMap = new HashMap<>();
+        List<Map<String, Object>> imcAgeList = new ArrayList<>();
 
         for (Object[] row : result) {
             String age = (String) row[0];
             Double imc = (Double) row[1];
-            imcAgeMap.put(age, imc);
+            Map<String, Object> map = new HashMap<>();
+            map.put("faixa_etaria", age);
+            map.put("imc_medio", imc);
+            imcAgeList.add(map);
         }
-        return imcAgeMap;
+        return imcAgeList;
     }
 
     @Transactional
-    public Map<SexEnum, Double> countObeseBySex() {
-        Map<SexEnum, Double> obesityPercentages = new HashMap<>();
+    public List<Map<String, Object>> countObeseBySex() {
+        List<Map<String, Object>> obesityPercentagesList = new ArrayList<>();
 
         Double maleObesityPercentage = candidateRepository.calculateObesityPercentageBySex(SexEnum.Masculino);
-        obesityPercentages.put(SexEnum.Masculino, maleObesityPercentage);
+        Map<String, Object> maleObesityMap = new HashMap<>();
+        maleObesityMap.put("sexo", SexEnum.Masculino);
+        maleObesityMap.put("percentual_obesidade", maleObesityPercentage);
+        obesityPercentagesList.add(maleObesityMap);
 
         Double femaleObesityPercentage = candidateRepository.calculateObesityPercentageBySex(SexEnum.Feminino);
-        obesityPercentages.put(SexEnum.Feminino, femaleObesityPercentage);
+        Map<String, Object> femaleObesityMap = new HashMap<>();
+        femaleObesityMap.put("sexo", SexEnum.Feminino);
+        femaleObesityMap.put("percentual_obesidade", femaleObesityPercentage);
+        obesityPercentagesList.add(femaleObesityMap);
 
-        return obesityPercentages;
+        return obesityPercentagesList;
     }
 
     @Transactional
-    public Map<String, Double> averageAgeByBloodType() {
+    public List<Map<String, Object>> averageAgeByBloodType() {
         List<Object[]> result = candidateRepository.averageAgeByBloodType();
-        Map<String, Double> averageAgeMap = new HashMap<>();
+        List<Map<String, Object>> imcAgeList = new ArrayList<>();
 
         for (Object[] row : result) {
             String bloodType = (String) row[0];
             Double averageAge = (Double) row[1];
-            averageAgeMap.put(bloodType, averageAge);
+            Map<String, Object> map = new HashMap<>();
+            map.put("tipo_sanguineo", bloodType);
+            map.put("idade_media", averageAge);
+            imcAgeList.add(map);
         }
-
-        return averageAgeMap;
+        return imcAgeList;
     }
 
     @Transactional
-    public Map<String, Long> countPossibleDonors() {
+    public List<Map<String, Object>> countPossibleDonors() {
         List<Object[]> result = candidateRepository.countPossibleDonors();
         Map<String, Long> countPossibleDonorsMap = new HashMap<>();
+
         for (Object[] row : result) {
             String bloodType = (String) row[0];
             Long count = (Long) row[1];
@@ -95,14 +111,16 @@ public class CandidateService {
                 + countPossibleDonorsMap.getOrDefault("AB+", 0L);
 
         Long totalAMinus = countPossibleDonorsMap.getOrDefault("A+", 0L)
-                + countPossibleDonorsMap.getOrDefault("AB+", 0L) + countPossibleDonorsMap.getOrDefault("A-", 0L)
+                + countPossibleDonorsMap.getOrDefault("AB+", 0L)
+                + countPossibleDonorsMap.getOrDefault("A-", 0L)
                 + countPossibleDonorsMap.getOrDefault("AB-", 0L);
 
         Long totalBPlus = countPossibleDonorsMap.getOrDefault("B+", 0L)
                 + countPossibleDonorsMap.getOrDefault("AB+", 0L);
 
         Long totalBMinus = countPossibleDonorsMap.getOrDefault("B+", 0L)
-                + countPossibleDonorsMap.getOrDefault("AB+", 0L) + countPossibleDonorsMap.getOrDefault("B-", 0L)
+                + countPossibleDonorsMap.getOrDefault("AB+", 0L)
+                + countPossibleDonorsMap.getOrDefault("B-", 0L)
                 + countPossibleDonorsMap.getOrDefault("AB-", 0L);
 
         Long totalABPlus = countPossibleDonorsMap.getOrDefault("AB+", 0L);
@@ -111,29 +129,38 @@ public class CandidateService {
                 + countPossibleDonorsMap.getOrDefault("AB-", 0L);
 
         Long totalOPlus = countPossibleDonorsMap.getOrDefault("B+", 0L)
-                + countPossibleDonorsMap.getOrDefault("AB+", 0L) + countPossibleDonorsMap.getOrDefault("A+", 0L)
+                + countPossibleDonorsMap.getOrDefault("AB+", 0L)
+                + countPossibleDonorsMap.getOrDefault("A+", 0L)
                 + countPossibleDonorsMap.getOrDefault("O+", 0L);
 
         Long totalOMinus = countPossibleDonorsMap.getOrDefault("B+", 0L)
-                + countPossibleDonorsMap.getOrDefault("AB+", 0L) + countPossibleDonorsMap.getOrDefault("A+", 0L)
-                + countPossibleDonorsMap.getOrDefault("O+", 0L) + countPossibleDonorsMap.getOrDefault("B-", 0L)
-                + countPossibleDonorsMap.getOrDefault("AB-", 0L) + countPossibleDonorsMap.getOrDefault("A-", 0L)
+                + countPossibleDonorsMap.getOrDefault("AB+", 0L)
+                + countPossibleDonorsMap.getOrDefault("A+", 0L)
+                + countPossibleDonorsMap.getOrDefault("O+", 0L)
+                + countPossibleDonorsMap.getOrDefault("B-", 0L)
+                + countPossibleDonorsMap.getOrDefault("AB-", 0L)
+                + countPossibleDonorsMap.getOrDefault("A-", 0L)
                 + countPossibleDonorsMap.getOrDefault("O-", 0L);
-        ;
 
-        countPossibleDonorsMap.put("A+", totalAPlus);
-        countPossibleDonorsMap.put("A-", totalAMinus);
+        List<Map<String, Object>> resultList = new ArrayList<>();
 
-        countPossibleDonorsMap.put("B+", totalBPlus);
-        countPossibleDonorsMap.put("B-", totalBMinus);
+        resultList.add(createResultMap("A+", totalAPlus));
+        resultList.add(createResultMap("A-", totalAMinus));
+        resultList.add(createResultMap("B+", totalBPlus));
+        resultList.add(createResultMap("B-", totalBMinus));
+        resultList.add(createResultMap("AB+", totalABPlus));
+        resultList.add(createResultMap("AB-", totalABMinus));
+        resultList.add(createResultMap("O+", totalOPlus));
+        resultList.add(createResultMap("O-", totalOMinus));
 
-        countPossibleDonorsMap.put("AB+", totalABPlus);
-        countPossibleDonorsMap.put("AB-", totalABMinus);
+        return resultList;
+    }
 
-        countPossibleDonorsMap.put("O+", totalOPlus);
-        countPossibleDonorsMap.put("O-", totalOMinus);
-
-        return countPossibleDonorsMap;
+    private Map<String, Object> createResultMap(String bloodType, Long total) {
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("tipo_sanguineo", bloodType);
+        resultMap.put("quantidade", total);
+        return resultMap;
     }
 
 }
