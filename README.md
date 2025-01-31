@@ -20,14 +20,10 @@ Por fim, nesse repositório foi desenvolvido o backend do projeto.
 ## Configurações em localhost
 
     1 - Instale o Maven na sua máquina;
-    2 - Instale o Postgres SQL na sua máquina;
-    3 - Crie um usuário chamado postgres no Postgres SQL;
-    4 - Altere a senha de usuário para postgres também;
-    5 - Crie um banco de dados chamado "entregas";
-    6 - No arquivo "aplication.properties", altere o valor de "JWT_SECRET" 
-    na chave secreta para qualquer palavra que você ache secreta;
-    7 - No arquivo "application.properties", altere o seu username (e-mail) e password nas confirgurações de smtp. Veja como adicionar a senha correta do seu e-mail 
-    de envio escolhido: https://support.google.com/accounts/answer/185833.    
+    2 - Instale o MySQL na sua máquina;
+    3 - Crie um usuário chamado root no MySQL, se não houver;
+    4 - Altere a senha de usuário para vazia também, se não estiver vazio;
+    5 - Crie um banco de dados chamado "banco_de_sangue";
 
 ## Dependências implantadas
 
