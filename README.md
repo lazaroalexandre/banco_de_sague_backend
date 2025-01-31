@@ -55,7 +55,7 @@ Por fim, nesse repositório foi desenvolvido o backend do projeto.
 
 ## Endpoints
 
-    [endpoints.json](./endpoints.json)
+[endpoints.json](./endpoints.json)
     
 ## Autor
 
