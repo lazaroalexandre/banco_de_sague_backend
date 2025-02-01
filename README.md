@@ -57,6 +57,15 @@ Por fim, nesse repositório foi desenvolvido o backend do projeto.
 
 [endpoints.json](./endpoints.json)
     
+## Observação
+
+Caso queira fazer a integração localmente entre esse backend e o frontend criado, você deve:
+
+- Ver e copiar o ip de rede usb que conecta seu smartphone ao seu computador;
+- Rodar o spring assim:
+  - mvn spring-boot:run -Dserver.address=_ip-de-rede-usb-do-seu-celular_ -Dserver.port=8080
+
+
 ## Autor
 
 Olá, sou o Lázaro Alexandre, um desenvolvedor full stack e futuro analista de sistemas apaixonado por transformar vidas através da inovação tecnológica.
